@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chăm Sóc Sức Khỏe Khoa Học</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff0f6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #ff6b9f 0%, #ff93c2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.2rem;
+            white-space: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.22s ease;
+            padding: 0.35rem 0.7rem;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        .nav-menu a i {
+            font-size: 1.05rem;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #ff6b9f 0%, #ff93c2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            color: #4b1030;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 4px 14px rgba(75,16,48,0.08);
+            font-weight: 600;
+        }
+
+        .btn i { font-size: 1rem; }
+
+        .btn-primary {
+            color: white;
+            background: linear-gradient(90deg,#ff6b9f 0%,#ff93c2 100%);
+            box-shadow: 0 8px 30px rgba(255,105,150,0.18);
+        }
+
+        .owner-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255,240,246,0.12);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .owner-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: visible;
+        }
+
+        .owner-image img, .owner-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Hello Kitty cat ears */
+        .owner-image::before,
+        .owner-image::after {
+            content: "";
+            position: absolute;
+            top: -18px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(180deg,#ffd6ea 0%, #ffb3d1 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .owner-image::before { left: 8px; transform: rotate(-12deg); }
+        .owner-image::after { right: 8px; transform: rotate(12deg); }
+
+        /* Little Hello Kitty bow (left side) */
+        .kitty-bow {
+            position: absolute;
+            top: -6px;
+            left: 34px;
+            width: 34px;
+            height: 22px;
+            display: block;
+            pointer-events: none;
+        }
+
+        .kitty-bow::before,
+        .kitty-bow::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            background: linear-gradient(180deg,#ff4d94 0%, #ff6fb3 100%);
+            border-radius: 6px 8px 8px 6px;
+            transform-origin: center;
+        }
+
+        .kitty-bow::before { left: 0; transform: rotate(-25deg); }
+        .kitty-bow::after { right: 0; transform: rotate(25deg); }
+
+        .kitty-bow span {
+            position: absolute;
+            left: 50%;
+            top: 4px;
+            width: 8px;
+            height: 8px;
+            margin-left: -4px;
+            background: #ffd6ea;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08) inset;
+        }
+
+        .owner-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            animation: fadeIn 1s;
+        }
+
+        section h2 {
+            color: #ff6b9f;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #ff6b9f;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .section-image {
+            width: 100%;
+            min-height: 260px;
+            background: linear-gradient(135deg, #ffe6f0 0%, #fff0f6 100%);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+        }
+
+        .section-image img, .section-image-img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .section-text ul {
+            list-style-position: inside;
+            margin: 1rem 0;
+        }
+
+        .section-text li {
+            margin: 0.8rem 0;
+            padding-left: 1rem;
+        }
+
+        .section-text p {
+            margin: 1rem 0;
+            text-align: justify;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #ff6b9f 0%, #ff93c2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #4b1030;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 0.8rem;
+                padding-inline: 0.5rem;
+            }
+
+            .nav-menu a { font-size: 0.88rem; padding: 0.3rem 0.6rem; }
+
+            .hero h1 { font-size: 2rem; }
+
+            .section-content { grid-template-columns: 1fr; }
+
+            .owner-section { flex-direction: column; }
+
+            section { padding: 2rem 1.2rem; }
+        }
+
+        /* Scroll Behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span>🏥</span>
+                <span>Sức Khỏe Khoa Học</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#gioi-thieu"><i class="fa-solid fa-book-open"></i>Giới Thiệu</a></li>
+                <li><a href="#dinh-duong"><i class="fa-solid fa-apple-whole"></i>Dinh Dưỡng</a></li>
+                <li><a href="#van-dong"><i class="fa-solid fa-person-running"></i>Vận Động</a></li>
+                <li><a href="#ngu-nghi"><i class="fa-solid fa-moon"></i>Ngủ Nghỉ</a></li>
+                <li><a href="#tinh-than"><i class="fa-solid fa-face-smile"></i>Tinh Thần</a></li>
+                <li><a href="#loi-ich"><i class="fa-solid fa-gem"></i>Lợi Ích</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>CHĂM SÓC SỨC KHỎE KHOA HỌC</h1>
+            <p>Xây dựng lối sống lành mạnh dựa trên kiến thức y học và thói quen sinh hoạt hợp lý</p>
+            <div class="hero-ctas">
+                <a class="btn btn-primary" href="#gioi-thieu"><i class="fa-solid fa-play"></i>Bắt đầu</a>
+                <a class="btn" href="#loi-ich"><i class="fa-solid fa-circle-info"></i>Tìm hiểu</a>
+            </div>
+            <div class="owner-section">
+                <div class="owner-image">
+                    <img src="hanh.jpg" alt="Chủ sở hữu" class="owner-img">
+                    <span class="kitty-bow"><span></span></span>
+                </div>
+                <div class="owner-info">
+                    <h3>Chuyên Gia Sức Khỏe</h3>
+                    <p>Hãy cùng tôi khám phá cách chăm sóc sức khỏe một cách khoa học và hiệu quả</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Giới Thiệu -->
+        <section id="gioi-thieu">
+            <h2>📖 Giới Thiệu</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Chăm sóc sức khỏe khoa học là quá trình xây dựng lối sống lành mạnh dựa trên kiến thức y học và thói quen sinh hoạt hợp lý. Không chỉ giúp phòng ngừa bệnh tật, việc chăm sóc sức khỏe đúng cách còn mang lại làn da khỏe mạnh, tinh thần tích cực và chất lượng cuộc sống bền vững.</p>
+                    <p>Hãy bắt đầu hành trình chăm sóc sức khỏe của bạn ngay hôm nay với những kiến thức khoa học và dễ áp dụng!</p>
+                </div>
+                <div class="section-image">
+                    <img src="gt.jpg" alt="Giới Thiệu" class="section-image-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Dinh Dưỡng -->
+        <section id="dinh-duong">
+            <h2>🥗 Dinh Dưỡng Khoa Học</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="dd.jpg" alt="Dinh dưỡng" class="section-image-img">
+                </div>
+                <div class="section-text">
+                    <p>Dinh dưỡng đóng vai trò quan trọng trong việc nuôi dưỡng cơ thể từ bên trong.</p>
+                    <ul>
+                        <li>Ăn uống đầy đủ các nhóm chất: tinh bột, chất đạm, chất béo tốt, vitamin và khoáng chất</li>
+                        <li>Ưu tiên thực phẩm tươi, tự nhiên như rau xanh, trái cây, ngũ cốc nguyên hạt</li>
+                        <li>Hạn chế đồ ăn nhanh, thực phẩm chế biến sẵn và đồ uống nhiều đường</li>
+                        <li>Uống đủ nước mỗi ngày để hỗ trợ trao đổi chất và thải độc cho cơ thể</li>
+                    </ul>
+                    <p>Một chế độ ăn uống cân bằng giúp duy trì vóc dáng, tăng sức đề kháng và cải thiện làn da rõ rệt.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vận Động -->
+        <section id="van-dong">
+            <h2>🏃 Vận Động và Rèn Luyện Thể Chất</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Vận động thường xuyên giúp cơ thể khỏe mạnh và tinh thần sảng khoái.</p>
+                    <ul>
+                        <li>Tập thể dục ít nhất 30 phút mỗi ngày</li>
+                        <li>Lựa chọn hình thức phù hợp như đi bộ, yoga, chạy bộ, bơi lội hoặc đạp xe</li>
+                        <li>Kết hợp vận động nhẹ nhàng trong sinh hoạt hằng ngày</li>
+                    </ul>
+                    <p>Thói quen luyện tập đều đặn giúp cải thiện tim mạch, tăng cường cơ bắp và giảm căng thẳng hiệu quả.</p>
+                </div>
+                <div class="section-image">
+                    <img src="renluyen.jpg" alt="Vận động" class="section-image-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Ngủ Nghỉ -->
+        <section id="ngu-nghi">
+            <h2>😴 Ngủ Nghỉ và Sinh Hoạt Điều Độ</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="sh.jpg" alt="Ngủ Nghỉ" class="section-image-img">
+                </div>
+                <div class="section-text">
+                    <p>Giấc ngủ là thời gian để cơ thể phục hồi và tái tạo năng lượng.</p>
+                    <ul>
+                        <li>Ngủ đủ từ 7–8 tiếng mỗi ngày</li>
+                        <li>Ngủ đúng giờ, hạn chế thức khuya</li>
+                        <li>Tránh sử dụng điện thoại, máy tính trước khi ngủ</li>
+                    </ul>
+                    <p>Ngủ đủ giấc không chỉ tốt cho sức khỏe mà còn giúp làn da tươi sáng và tinh thần minh mẫn hơn.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sức Khỏe Tinh Thần -->
+        <section id="tinh-than">
+            <h2>🧘 Chăm Sóc Sức Khỏe Tinh Thần</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Sức khỏe tinh thần là yếu tố không thể thiếu trong chăm sóc sức khỏe khoa học.</p>
+                    <ul>
+                        <li>Giữ suy nghĩ tích cực và lối sống lạc quan</li>
+                        <li>Biết cân bằng giữa học tập, công việc và nghỉ ngơi</li>
+                        <li>Dành thời gian thư giãn, làm những điều mình yêu thích</li>
+                    </ul>
+                    <p>Tinh thần thoải mái giúp giảm stress, cải thiện chất lượng cuộc sống và tăng hiệu quả học tập, làm việc.</p>
+                </div>
+                <div class="section-image">
+                    <img src="tinhthan.jpg" alt="Tinh thần" class="section-image-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Lối Sống Lành Mạnh -->
+        <section>
+            <h2>🌟 Lối Sống Lành Mạnh</h2>
+            <div class="section-content">
+                <div class="section-image">
+                    <img src="song.jpg" alt="Lối sống" class="section-image-img">
+                </div>
+                <div class="section-text">
+                    <p>Một lối sống khoa học cần được duy trì lâu dài.</p>
+                    <ul>
+                        <li>Tránh xa các thói quen có hại cho sức khỏe</li>
+                        <li>Giữ vệ sinh cá nhân và môi trường sống sạch sẽ</li>
+                        <li>Chủ động tìm hiểu kiến thức chăm sóc sức khỏe đúng cách</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lợi Ích -->
+        <section id="loi-ich">
+            <h2>💎 Lợi Ích Của Chăm Sóc Sức Khỏe Khoa Học</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>💪 Cơ Thể Khỏe Mạnh</h3>
+                    <p>Tràn đầy năng lượng và sức sống mỗi ngày</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>✨ Làn Da Đẹp</h3>
+                    <p>Cải thiện làn da và vóc dáng rõ rệt</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>😊 Tinh Thần Tích Cực</h3>
+                    <p>Giảm căng thẳng, tâm trạng vui vẻ</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>🛡️ Phòng Ngừa Bệnh</h3>
+                    <p>Tăng cường miễn dịch, sống khỏe lâu dài</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kết Luận -->
+        <section>
+            <h2>📝 Kết Luận</h2>
+            <div class="section-content">
+                <div class="section-text">
+                    <p>Chăm sóc sức khỏe khoa học không phải là điều quá phức tạp, mà bắt đầu từ những thói quen nhỏ mỗi ngày. Khi bạn biết yêu thương và chăm sóc cơ thể đúng cách, bạn sẽ có nền tảng vững chắc để sống khỏe, đẹp và tự tin hơn trong cuộc sống.</p>
+                    <p><strong>Hãy bắt đầu ngay hôm nay và cảm nhận sự thay đổi tích cực!</strong></p>
+                </div>
+                <div class="section-image">
+                    <img src="kl.jpg" alt="Chủ sở hữu" class="owner-img">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Chăm Sóc Sức Khỏe Khoa Học</strong></p>
+        <p>© 2024 - Mọi quyền được bảo lưu</p>
+        <p>📧 Email: contact@suckhoekhohoc.com | 📱 Hotline: 0123 456 789</p>
+    </footer>
+</body>
+</html>
